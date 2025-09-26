@@ -24,7 +24,7 @@ public class Main {
                 System.out.println("Calculant interessos...");
                 double saldo = dades.get("saldo");
                 double interes = dades.get("interes");
-                dades.put("saldo", saldo + (saldo * interes));
+                dades.put("saldo_final", saldo + (saldo * interes));
                 System.out.println("Interes aplicat.");
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -32,10 +32,10 @@ public class Main {
         };
 
         Callable<Double> obtenirSaldoFinal = () -> {
-            while (!dades.containsKey("saldo") || dades.get("saldo") == 1000.0) {
+            while (!dades.containsKey("saldo_final")) {
                 Thread.sleep(50); // Espera fins que el saldo calculat estigui disponible
             }
-            return dades.get("saldo");
+            return dades.get("saldo_final");
         };
 
         executor.execute(recepcioOperacio);
