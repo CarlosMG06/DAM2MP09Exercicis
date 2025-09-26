@@ -10,14 +10,10 @@ public class Main {
         ExecutorService executor = Executors.newFixedThreadPool(3);
 
         Runnable recepcioOperacio = () -> {
-            try {
-                System.out.println("Rebent operació bancària...");
-                dades.put("saldo", 1000.0);
-                dades.put("interes", 0.05);
-                System.out.println("Saldo inicial: " + dades.get("saldo") + "€");
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
+            System.out.println("Rebent operacio bancaria...");
+            dades.put("saldo", 1000.0);
+            dades.put("interes", 0.05);
+            System.out.println("Saldo inicial: " + dades.get("saldo") + "$");
         };
 
         Runnable calculInteres = () -> {
@@ -29,7 +25,7 @@ public class Main {
                 double saldo = dades.get("saldo");
                 double interes = dades.get("interes");
                 dades.put("saldo", saldo + (saldo * interes));
-                System.out.println("Interès aplicat.");
+                System.out.println("Interes aplicat.");
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
@@ -37,15 +33,21 @@ public class Main {
 
         Callable<Double> obtenirSaldoFinal = () -> {
             while (!dades.containsKey("saldo") || dades.get("saldo") == 1000.0) {
-                Thread.sleep(50); // Espera fins que el saldo estigui disponible
+                Thread.sleep(50); // Espera fins que el saldo calculat estigui disponible
             }
             return dades.get("saldo");
         };
 
-        executor.execute(registrarEsdeveniment);
-        executor.execute(comprovarEstatDeXarxa);
+        executor.execute(recepcioOperacio);
+        executor.execute(calculInteres);
+        Future<Double> resultat = executor.submit(obtenirSaldoFinal);
+
+        try {
+             System.out.println("Saldo final: " + resultat.get() + "$");
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
         executor.shutdown();
-        executor.awaitTermination(10, TimeUnit.SECONDS);
     }
 }

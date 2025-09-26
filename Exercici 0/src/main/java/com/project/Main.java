@@ -17,7 +17,6 @@ public class Main {
             }
         };
 
-        // Tasca 2: modificar (consumeix 100 i publica 200)
         Runnable comprovarEstatDeXarxa = () -> {
             try {
                 System.out.println("Comprovant estat de xarxa...");
@@ -32,6 +31,5 @@ public class Main {
         executor.execute(comprovarEstatDeXarxa);
 
         executor.shutdown();
-        executor.awaitTermination(10, TimeUnit.SECONDS);
     }
 }
