@@ -18,10 +18,10 @@ public class Main {
 
         Runnable calculInteres = () -> {
             try {
+                System.out.println("Calculant interessos...");
                 while (!dades.containsKey("saldo") || !dades.containsKey("interes")) {
                     Thread.sleep(50); // Espera fins que les dades estiguin disponibles
                 }
-                System.out.println("Calculant interessos...");
                 double saldo = dades.get("saldo");
                 double interes = dades.get("interes");
                 dades.put("saldo_final", saldo + (saldo * interes));
@@ -32,6 +32,7 @@ public class Main {
         };
 
         Callable<Double> obtenirSaldoFinal = () -> {
+            System.out.println("Obtenint saldo final...");
             while (!dades.containsKey("saldo_final")) {
                 Thread.sleep(50); // Espera fins que el saldo calculat estigui disponible
             }
