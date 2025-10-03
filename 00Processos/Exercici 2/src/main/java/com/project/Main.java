@@ -4,7 +4,7 @@ import java.util.concurrent.*;
 
 public class Main {
     public static void main(String[] args) {
-        ExecutorService executor = Executors.newFixedThreadPool(3);
+        ExecutorService executor = Executors.newFixedThreadPool(1);
         try {
             CompletableFuture<Double> f1 = CompletableFuture.supplyAsync(() -> {
             System.out.println("F1: Validant dades...");
