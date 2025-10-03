@@ -16,46 +16,24 @@ public class Main {
             System.out.println("Resultat final: " + resultatFinal);
         });
 
-        Runnable microservei1 = () -> {
-            try {
-                System.out.println("Microservei 1 processant dades...");
-                Thread.sleep(1000);
-                parcials.put("parcial_1", 10); 
-                System.out.println("Microservei 1 ha acabat.");
-                barrier.await();
-            } catch (InterruptedException | BrokenBarrierException e) {
-                Thread.currentThread().interrupt();
-            }
-        };
-
-        Runnable microservei2 = () -> {
-            try {
-                System.out.println("Microservei 2 processant dades...");
-                Thread.sleep(1500);
-                parcials.put("parcial_2", 20);
-                System.out.println("Microservei 2 ha acabat.");
-                barrier.await();
-            } catch (InterruptedException | BrokenBarrierException e) {
-                Thread.currentThread().interrupt();
-            }
-        };
-
-        Runnable microservei3 = () -> {
-            try {
-                System.out.println("Microservei 3 processant dades...");
-                Thread.sleep(500);
-                parcials.put("parcial_3", 30);
-                System.out.println("Microservei 3 ha acabat.");
-                barrier.await();
-            } catch (InterruptedException | BrokenBarrierException e) {
-                Thread.currentThread().interrupt();
-            }
-        };
-
-        executor.execute(microservei1);
-        executor.execute(microservei2);
-        executor.execute(microservei3);
+        for (int i = 1; i <= 3; i++) {
+            executor.execute(microservei(i, parcials, barrier));
+        }
 
         executor.shutdown();
+    }
+
+    private static Runnable microservei(int id, ConcurrentHashMap parcials, CyclicBarrier barrier) {
+        return () -> {
+            try {
+                System.out.println("Microservei " + id + " processant dades...");
+                Thread.sleep((int) (500 * id));
+                parcials.put("parcial_" + id, id * 10);
+                System.out.println("Microservei " + id + " ha acabat.");
+                barrier.await();
+            } catch (InterruptedException | BrokenBarrierException e) {
+                Thread.currentThread().interrupt();
+            }
+        };
     }
 }
