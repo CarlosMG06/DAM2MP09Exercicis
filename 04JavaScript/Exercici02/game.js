@@ -3,14 +3,17 @@ class Game {
         this.score = 0
         this.cheat = false
         this.board = [
-            [0, 0, 0, 0, 0, 0, 0, 0]
-            [0, 0, 0, 0, 0, 0, 0, 0]
-            [0, 0, 0, 0, 0, 0, 0, 0]
-            [0, 0, 0, 0, 0, 0, 0, 0]
-            [0, 0, 0, 0, 0, 0, 0, 0]
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0]
         ]
         this.treasures = 16
+        this.attempts = 32
+        this.remainingAttempts = this.attempts
+        this.hideTreasures()
     }
 
     hideTreasures() {
@@ -42,14 +45,17 @@ class Game {
             for (let x = 0; x < this.board[y].length; x++) {
                 if (this.cheat && this.board[y][x] === 1) {
                     row += 'X'
-                } else if (this.board[y][x] === 2) {
+                } else if (this.board[y][x] === 3) {
                     row += 'O'
+                } else if (this.board[y][x] === 2) {
+                    row += this.distanceToNearestTreasure(x, y)
                 } else {
                     row += '·'
                 }
             }
             console.log(row)
         }
+        console.log("")
     }
 
     activateCheat() {
@@ -69,24 +75,35 @@ class Game {
         if (this.board[y][x] === 1) {
             console.log("Has trobat un tresor!")
             this.score += 1
-            this.board[y][x] = 2 // Marcar com a destapat
-        } else if (this.board[y][x] === 2) {
+            this.board[y][x] = 3 // Marcar com a tresor trobat
+        } else if (this.board[y][x] > 1) {
             console.log("Aquesta casella ja està destapada.")
         } else {
             console.log("No hi ha cap tresor aquí.")
-
+            this.remainingAttempts -= 1
+            this.board[y][x] = 2 // Marcar com a destapat
+            const distance = this.distanceToNearestTreasure(x, y)
+            console.log(`Distància al tresor més proper: ${distance}`)
         }
     }
 
     distanceToNearestTreasure(x, y) {
-        
-
-        return distance
+        let minDistance = Infinity
+        for (let j = 0; j < this.board.length; j++) {
+            for (let i = 0; i < this.board[j].length; i++) {
+                if (this.board[j][i] === 1 || this.board[j][i] === 3) {
+                    const distance = Math.abs(x - i) + Math.abs(y - j)
+                    if (distance < minDistance) {
+                        minDistance = distance
+                    }
+                }
+            }
+        }
+        return minDistance
     }
 
-
     showScore() {
-        console.log(`Puntuació actual: ${this.score}`)
+        console.log(`Puntuació actual: ${this.score}/${this.treasures}. Tirades restants: ${this.remainingAttempts}`)
     }
 
     toJSON() {
@@ -95,6 +112,12 @@ class Game {
             cheat: this.cheat,
             board: this.board
         }
+    }
+
+    fromJSON(data) {
+        this.score = data.score
+        this.cheat = data.cheat
+        this.board = data.board
     }
 }
 module.exports = Game
