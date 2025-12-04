@@ -1,29 +1,38 @@
+class Cell {
+    constructor() {
+        this.hasTreasure = false
+        this.isUncovered = false
+    }
+}
+
 class Game {
     constructor() {
         this.score = 0
         this.cheat = false
-        this.board = [
-            [0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0]
-        ]
-        this.treasures = 16
         this.attempts = 32
         this.remainingAttempts = this.attempts
-        this.hideTreasures()
+        this.board = []
+        this.treasures = 16
+        this.generateBoard()
     }
 
-    hideTreasures() {
+    generateBoard() {
+        // Tauler amb cel·les buides
+        for (let y = 0; y < 6; y++) {
+            this.board[y] = []
+            for (let x = 0; x < 8; x++) {
+                this.board[y][x] = new Cell()
+            }
+        }
+
+        // Col·locar tresors aleatòriament
         for (let i = 0; i < this.treasures; i++) {
             let x, y
             do {
                 y = Math.floor(Math.random() * 6)
                 x = Math.floor(Math.random() * 8)
-            } while (this.board[y][x] === 1)
-            this.board[y][x] = 1
+            } while (this.board[y][x].hasTreasure)
+            this.board[y][x].hasTreasure = true
         }
     }
 
@@ -43,11 +52,12 @@ class Game {
         for (let y = 0; y < this.board.length; y++) {
             let row = String.fromCharCode('A'.charCodeAt(0) + y)
             for (let x = 0; x < this.board[y].length; x++) {
-                if (this.cheat && this.board[y][x] === 1) {
+                const cell = this.board[y][x]
+                if (this.cheat && !cell.isUncovered && cell.hasTreasure) {
                     row += 'X'
-                } else if (this.board[y][x] === 3) {
+                } else if (cell.isUncovered && cell.hasTreasure) {
                     row += 'O'
-                } else if (this.board[y][x] === 2) {
+                } else if (cell.isUncovered) {
                     row += this.distanceToNearestTreasure(x, y)
                 } else {
                     row += '·'
@@ -72,18 +82,20 @@ class Game {
             console.log("Posició invàlida.")
             return
         }
-        if (this.board[y][x] === 1) {
-            console.log("Has trobat un tresor!")
-            this.score += 1
-            this.board[y][x] = 3 // Marcar com a tresor trobat
-        } else if (this.board[y][x] > 1) {
+        const cell = this.board[y][x]
+        if (cell.isUncovered) {
             console.log("Aquesta casella ja està destapada.")
         } else {
-            console.log("No hi ha cap tresor aquí.")
-            this.remainingAttempts -= 1
-            this.board[y][x] = 2 // Marcar com a destapat
-            const distance = this.distanceToNearestTreasure(x, y)
-            console.log(`Distància al tresor més proper: ${distance}`)
+            if (cell.hasTreasure) {
+                console.log("Has trobat un tresor!")
+                this.score += 1
+            } else {
+                console.log("No hi ha cap tresor aquí.")
+                this.remainingAttempts -= 1
+                const distance = this.distanceToNearestTreasure(x, y)
+                console.log(`Distància al tresor més proper: ${distance}`)
+            }
+            cell.isUncovered = true
         }
     }
 
@@ -91,7 +103,7 @@ class Game {
         let minDistance = Infinity
         for (let j = 0; j < this.board.length; j++) {
             for (let i = 0; i < this.board[j].length; i++) {
-                if (this.board[j][i] === 1 || this.board[j][i] === 3) {
+                if (this.board[j][i].hasTreasure) {
                     const distance = Math.abs(x - i) + Math.abs(y - j)
                     if (distance < minDistance) {
                         minDistance = distance
@@ -107,17 +119,34 @@ class Game {
     }
 
     toJSON() {
+        var boardJSON = [];
+        for (let y = 0; y < this.board.length; y++) {
+            boardJSON[y] = [];
+            for (let x = 0; x < this.board[y].length; x++) {
+                boardJSON[y][x] = {
+                    hasTreasure: this.board[y][x].hasTreasure,
+                    isUncovered: this.board[y][x].isUncovered
+                };
+            }
+        }
         return {
             score: this.score,
             cheat: this.cheat,
-            board: this.board
+            remainingAttempts: this.remainingAttempts,
+            board: boardJSON
         }
     }
 
     fromJSON(data) {
         this.score = data.score
         this.cheat = data.cheat
-        this.board = data.board
+        this.remainingAttempts = data.remainingAttempts
+        for (let y = 0; y < data.board.length; y++) {
+            for (let x = 0; x < data.board[y].length; x++) {
+                this.board[y][x].hasTreasure = data.board[y][x].hasTreasure
+                this.board[y][x].isUncovered = data.board[y][x].isUncovered
+            }
+        }
     }
 }
 module.exports = Game
