@@ -48,7 +48,7 @@ async function parseCommand(command, gameInstance) {
         gameInstance.activateCheat()
     } else if (mainCommand === 'desactivar' && args[0] === 'trampa') {
         gameInstance.deactivateCheat()
-    } else if (mainCommand === 'destapar') {
+    } else if (mainCommand === 'destapar' && RegExp('^[A-F][0-7]$').test(args[0])) {
         const position = args[0]
         let y = position.charCodeAt(0) - 'A'.charCodeAt(0)
         let x = parseInt(position.slice(1))

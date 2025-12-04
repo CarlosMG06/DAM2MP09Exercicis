@@ -1,210 +1,258 @@
 {
-  "score": 5,
+  "score": 14,
   "cheat": false,
-  "remainingAttempts": 24,
+  "remainingAttempts": 13,
   "board": [
     [
       {
         "hasTreasure": false,
-        "isUncovered": false
+        "isUncovered": true,
+        "distanceToTreasure": 1
       },
       {
         "hasTreasure": true,
-        "isUncovered": false
+        "isUncovered": true,
+        "distanceToTreasure": null
+      },
+      {
+        "hasTreasure": false,
+        "isUncovered": true,
+        "distanceToTreasure": 1
       },
       {
         "hasTreasure": true,
-        "isUncovered": false
+        "isUncovered": true,
+        "distanceToTreasure": null
       },
       {
         "hasTreasure": false,
-        "isUncovered": false
+        "isUncovered": true,
+        "distanceToTreasure": 1
       },
       {
         "hasTreasure": false,
-        "isUncovered": false
+        "isUncovered": false,
+        "distanceToTreasure": 1
       },
       {
         "hasTreasure": false,
-        "isUncovered": false
+        "isUncovered": false,
+        "distanceToTreasure": 2
       },
       {
         "hasTreasure": false,
-        "isUncovered": false
-      },
-      {
-        "hasTreasure": true,
-        "isUncovered": true
-      }
-    ],
-    [
-      {
-        "hasTreasure": true,
-        "isUncovered": false
-      },
-      {
-        "hasTreasure": false,
-        "isUncovered": false
-      },
-      {
-        "hasTreasure": false,
-        "isUncovered": true
-      },
-      {
-        "hasTreasure": false,
-        "isUncovered": false
-      },
-      {
-        "hasTreasure": false,
-        "isUncovered": false
-      },
-      {
-        "hasTreasure": true,
-        "isUncovered": false
-      },
-      {
-        "hasTreasure": false,
-        "isUncovered": true
-      },
-      {
-        "hasTreasure": false,
-        "isUncovered": false
-      }
-    ],
-    [
-      {
-        "hasTreasure": true,
-        "isUncovered": true
-      },
-      {
-        "hasTreasure": true,
-        "isUncovered": false
-      },
-      {
-        "hasTreasure": true,
-        "isUncovered": false
-      },
-      {
-        "hasTreasure": true,
-        "isUncovered": true
-      },
-      {
-        "hasTreasure": true,
-        "isUncovered": false
-      },
-      {
-        "hasTreasure": false,
-        "isUncovered": false
-      },
-      {
-        "hasTreasure": false,
-        "isUncovered": true
-      },
-      {
-        "hasTreasure": false,
-        "isUncovered": false
+        "isUncovered": true,
+        "distanceToTreasure": 3
       }
     ],
     [
       {
         "hasTreasure": false,
-        "isUncovered": true
+        "isUncovered": true,
+        "distanceToTreasure": 1
+      },
+      {
+        "hasTreasure": false,
+        "isUncovered": true,
+        "distanceToTreasure": 1
       },
       {
         "hasTreasure": true,
-        "isUncovered": false
+        "isUncovered": true,
+        "distanceToTreasure": null
+      },
+      {
+        "hasTreasure": true,
+        "isUncovered": true,
+        "distanceToTreasure": null
       },
       {
         "hasTreasure": false,
-        "isUncovered": false
+        "isUncovered": true,
+        "distanceToTreasure": 1
+      },
+      {
+        "hasTreasure": true,
+        "isUncovered": true,
+        "distanceToTreasure": null
       },
       {
         "hasTreasure": false,
-        "isUncovered": false
+        "isUncovered": false,
+        "distanceToTreasure": 1
       },
       {
         "hasTreasure": false,
-        "isUncovered": false
+        "isUncovered": false,
+        "distanceToTreasure": 2
+      }
+    ],
+    [
+      {
+        "hasTreasure": true,
+        "isUncovered": true,
+        "distanceToTreasure": null
       },
       {
         "hasTreasure": false,
-        "isUncovered": true
+        "isUncovered": false,
+        "distanceToTreasure": 1
       },
       {
         "hasTreasure": false,
-        "isUncovered": false
+        "isUncovered": false,
+        "distanceToTreasure": 1
       },
       {
         "hasTreasure": false,
-        "isUncovered": false
+        "isUncovered": true,
+        "distanceToTreasure": 1
+      },
+      {
+        "hasTreasure": false,
+        "isUncovered": false,
+        "distanceToTreasure": 2
+      },
+      {
+        "hasTreasure": false,
+        "isUncovered": false,
+        "distanceToTreasure": 1
+      },
+      {
+        "hasTreasure": true,
+        "isUncovered": false,
+        "distanceToTreasure": null
+      },
+      {
+        "hasTreasure": false,
+        "isUncovered": false,
+        "distanceToTreasure": 1
       }
     ],
     [
       {
         "hasTreasure": false,
-        "isUncovered": false
+        "isUncovered": true,
+        "distanceToTreasure": 1
+      },
+      {
+        "hasTreasure": false,
+        "isUncovered": true,
+        "distanceToTreasure": 1
+      },
+      {
+        "hasTreasure": false,
+        "isUncovered": true,
+        "distanceToTreasure": 1
+      },
+      {
+        "hasTreasure": false,
+        "isUncovered": false,
+        "distanceToTreasure": 1
+      },
+      {
+        "hasTreasure": false,
+        "isUncovered": true,
+        "distanceToTreasure": 1
+      },
+      {
+        "hasTreasure": false,
+        "isUncovered": true,
+        "distanceToTreasure": 2
+      },
+      {
+        "hasTreasure": false,
+        "isUncovered": false,
+        "distanceToTreasure": 1
       },
       {
         "hasTreasure": true,
-        "isUncovered": false
-      },
-      {
-        "hasTreasure": true,
-        "isUncovered": false
-      },
-      {
-        "hasTreasure": false,
-        "isUncovered": true
-      },
-      {
-        "hasTreasure": false,
-        "isUncovered": false
-      },
-      {
-        "hasTreasure": false,
-        "isUncovered": false
-      },
-      {
-        "hasTreasure": false,
-        "isUncovered": false
-      },
-      {
-        "hasTreasure": false,
-        "isUncovered": true
+        "isUncovered": true,
+        "distanceToTreasure": null
       }
     ],
     [
       {
         "hasTreasure": false,
-        "isUncovered": true
+        "isUncovered": true,
+        "distanceToTreasure": 1
       },
       {
         "hasTreasure": true,
-        "isUncovered": true
-      },
-      {
-        "hasTreasure": false,
-        "isUncovered": false
-      },
-      {
-        "hasTreasure": false,
-        "isUncovered": false
+        "isUncovered": true,
+        "distanceToTreasure": null
       },
       {
         "hasTreasure": true,
-        "isUncovered": true
-      },
-      {
-        "hasTreasure": false,
-        "isUncovered": false
+        "isUncovered": true,
+        "distanceToTreasure": null
       },
       {
         "hasTreasure": true,
-        "isUncovered": false
+        "isUncovered": true,
+        "distanceToTreasure": null
+      },
+      {
+        "hasTreasure": true,
+        "isUncovered": true,
+        "distanceToTreasure": null
       },
       {
         "hasTreasure": false,
-        "isUncovered": false
+        "isUncovered": true,
+        "distanceToTreasure": 1
+      },
+      {
+        "hasTreasure": false,
+        "isUncovered": true,
+        "distanceToTreasure": 1
+      },
+      {
+        "hasTreasure": true,
+        "isUncovered": true,
+        "distanceToTreasure": null
+      }
+    ],
+    [
+      {
+        "hasTreasure": false,
+        "isUncovered": true,
+        "distanceToTreasure": 2
+      },
+      {
+        "hasTreasure": false,
+        "isUncovered": false,
+        "distanceToTreasure": 1
+      },
+      {
+        "hasTreasure": false,
+        "isUncovered": true,
+        "distanceToTreasure": 1
+      },
+      {
+        "hasTreasure": false,
+        "isUncovered": true,
+        "distanceToTreasure": 1
+      },
+      {
+        "hasTreasure": false,
+        "isUncovered": false,
+        "distanceToTreasure": 1
+      },
+      {
+        "hasTreasure": true,
+        "isUncovered": true,
+        "distanceToTreasure": null
+      },
+      {
+        "hasTreasure": true,
+        "isUncovered": true,
+        "distanceToTreasure": null
+      },
+      {
+        "hasTreasure": true,
+        "isUncovered": false,
+        "distanceToTreasure": null
       }
     ]
   ]

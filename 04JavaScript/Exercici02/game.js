@@ -2,6 +2,7 @@ class Cell {
     constructor() {
         this.hasTreasure = false
         this.isUncovered = false
+        this.distanceToTreasure = null
     }
 }
 
@@ -34,6 +35,30 @@ class Game {
             } while (this.board[y][x].hasTreasure)
             this.board[y][x].hasTreasure = true
         }
+
+        // Calcular distàncies a tresors per a cada cel·la
+        for (let y = 0; y < this.board.length; y++) {
+            for (let x = 0; x < this.board[y].length; x++) {
+                if (!this.board[y][x].hasTreasure) {
+                    this.board[y][x].distanceToTreasure = this.distanceToNearestTreasure(x, y)
+                }
+            }
+        }
+    }
+
+    distanceToNearestTreasure(x, y) {
+        let minDistance = Infinity
+        for (let j = 0; j < this.board.length; j++) {
+            for (let i = 0; i < this.board[j].length; i++) {
+                if (this.board[j][i].hasTreasure) {
+                    const distance = Math.abs(x - i) + Math.abs(y - j)
+                    if (distance < minDistance) {
+                        minDistance = distance
+                    }
+                }
+            }
+        }
+        return minDistance
     }
 
     showBoard() {
@@ -53,12 +78,14 @@ class Game {
             let row = String.fromCharCode('A'.charCodeAt(0) + y)
             for (let x = 0; x < this.board[y].length; x++) {
                 const cell = this.board[y][x]
-                if (this.cheat && !cell.isUncovered && cell.hasTreasure) {
+                if (cell.isUncovered) {
+                    if (cell.hasTreasure) {
+                        row += 'O'
+                    } else {
+                        row += cell.distanceToTreasure
+                    }
+                } else if (this.cheat && cell.hasTreasure) {
                     row += 'X'
-                } else if (cell.isUncovered && cell.hasTreasure) {
-                    row += 'O'
-                } else if (cell.isUncovered) {
-                    row += this.distanceToNearestTreasure(x, y)
                 } else {
                     row += '·'
                 }
@@ -92,26 +119,10 @@ class Game {
             } else {
                 console.log("No hi ha cap tresor aquí.")
                 this.remainingAttempts -= 1
-                const distance = this.distanceToNearestTreasure(x, y)
-                console.log(`Distància al tresor més proper: ${distance}`)
+                console.log(`Distància al tresor més proper: ${cell.distanceToTreasure}`)
             }
             cell.isUncovered = true
         }
-    }
-
-    distanceToNearestTreasure(x, y) {
-        let minDistance = Infinity
-        for (let j = 0; j < this.board.length; j++) {
-            for (let i = 0; i < this.board[j].length; i++) {
-                if (this.board[j][i].hasTreasure) {
-                    const distance = Math.abs(x - i) + Math.abs(y - j)
-                    if (distance < minDistance) {
-                        minDistance = distance
-                    }
-                }
-            }
-        }
-        return minDistance
     }
 
     showScore() {
@@ -125,7 +136,8 @@ class Game {
             for (let x = 0; x < this.board[y].length; x++) {
                 boardJSON[y][x] = {
                     hasTreasure: this.board[y][x].hasTreasure,
-                    isUncovered: this.board[y][x].isUncovered
+                    isUncovered: this.board[y][x].isUncovered,
+                    distanceToTreasure: this.board[y][x].distanceToTreasure
                 };
             }
         }
@@ -145,6 +157,7 @@ class Game {
             for (let x = 0; x < data.board[y].length; x++) {
                 this.board[y][x].hasTreasure = data.board[y][x].hasTreasure
                 this.board[y][x].isUncovered = data.board[y][x].isUncovered
+                this.board[y][x].distanceToTreasure = data.board[y][x].distanceToTreasure
             }
         }
     }
