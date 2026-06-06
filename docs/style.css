@@ -1,0 +1,78 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html,body { height:100%; }
+body {
+  font-family: Arial;
+  background: #222;
+  color: #fff;
+  line-height: 1.4;
+}
+
+.nav {
+  background: #333;
+  border-bottom: 1px solid #444;
+  padding: 12px 20px;
+}
+.nav-logo { font-weight:700; }
+
+.container { 
+    max-width: 800px; 
+    margin: 28px auto; 
+    padding: 0 16px; 
+}
+
+.hero { 
+    text-align: center; 
+    padding: 32px 0; 
+}
+.hero h1 { 
+    font-size: 1.8rem; 
+    margin-bottom: 8px; 
+}
+.hero p { 
+    color: #999;
+    margin-bottom: 16px; 
+}
+.btn-primary {
+  display: inline-block; 
+  padding: 10px 16px; 
+  background: #393; 
+  color: #fff; 
+  font-weight: bold;
+  text-decoration: none; 
+  border-radius: 6px;
+}
+.info { 
+    background: #333; 
+    border: 1px solid #eee; 
+    border-radius: 8px; 
+    padding: 18px; 
+    margin-top: 20px; 
+}
+.info ul { 
+    margin-left: 18px; 
+    color: #ccc; 
+}
+.info * {font-size: 0.95rem;}
+.info h3 {font-size: 1.3rem;}
+code { 
+    background: #444; 
+    padding: 2px 6px; 
+    border-radius: 4px; 
+    font-family: monospace; 
+}
+
+#warning {
+    background: #522;
+    padding: 8px 16px;
+    border-radius: 8px;
+}
+#warning_title {color: #f66;}
+#warning_body {color: #fcc}
+#howto {color: #f90;}
+#generate {color: #09f;}
+
+
+@media (max-width:600px) {
+  .container { padding:0 12px; }
+  .hero h1 { font-size:1.4rem; }
+}

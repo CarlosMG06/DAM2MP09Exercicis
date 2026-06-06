@@ -1,0 +1,15 @@
+output: dist/
+variables:
+releases:
+  - name: v1.0.0
+    date: 2024-06-01
+    description: Primera versió de l'aplicació d'encriptació de fitxers amb RSA.
+    jobs:
+      - name: Build and Release
+        steps:
+          - name: Build App
+            package:
+              platform: linux
+              target: deb
+              build_args:
+                profile: true

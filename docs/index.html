@@ -1,11 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EncryptApp — Cifrado RSA</title>
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
+
+<header class="nav">
+  <div class="nav-logo">EncryptApp</div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <h1>Xifrat RSA per arxius</h1>
+    <p>Eina senzilla per xifrar/desxifrar arxius petits amb claus RSA PEM. Ús educatiu.</p>
+    <a href="encrypt_app_1.0.0_amd64.deb" class="btn-primary" download>Descargar .deb</a>
+  </section>
+
+  <section class="info">
+
+    <div id="warning">
+        <h3 id="warning_title">Advertència</h3>
+        <p id="warning_body">RSA directe és un algoritme bàsic d'encriptació i no és segur per a dades reals, públiques i sensibles. En producció, fes servir xifratge adequat com el que proporciona l'eina <code>gpg</code>.</p>
+    </div>
     
+    <br><hr><br>
+
+    <h3 id="howto">Ús rápid</h3>
+    <ul>
+      <li>Instal·la el paquet i executa'l.</li>
+      <li>Usa claus públiques per xifrar i claus privades per desxifrar.</li>
+    </ul>
+
+    <br><hr><br>
+
+    <h3 id="generate">Generar claus</h3>
+    <p>
+        El programa només es compatible amb claus de format PEM PKCS#1 o PKCS#8.<br>
+        Per generar claus PKCS#1, utilitza aquestes dues comandes:
+    </p>
+    <br>
+    <pre>
+    <code>openssl genrsa -out nom_clau_privada.pem 2048</code>
+    <code>openssl rsa -pubout -in nom_clau_privada.pem -out nom_clau_publica.pem</code>
+    </pre>
+  </section>
+</main>
+
 </body>
 </html>
