@@ -6,12 +6,14 @@ class ActionButton extends StatelessWidget {
   final String label;
   final bool enabled;
   final VoidCallback onPressed;
+  final Color color;
 
   const ActionButton({
     super.key, 
     required this.label,
     required this.enabled,
     required this.onPressed,
+    required this.color
   });
 
   @override
@@ -20,7 +22,7 @@ class ActionButton extends StatelessWidget {
       onPressed: enabled ? onPressed : null,
       style: ButtonStyle(
         backgroundColor: .resolveWith((states) {
-          return states.contains(WidgetState.disabled) ? AppTheme.surface : AppTheme.primary;
+          return states.contains(WidgetState.disabled) ? AppTheme.surface : color;
         }),
         foregroundColor: .resolveWith((states) {
           return states.contains(WidgetState.disabled) ? AppTheme.textSub : AppTheme.bg;
