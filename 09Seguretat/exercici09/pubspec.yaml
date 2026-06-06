@@ -1,0 +1,25 @@
+name: exercici09
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.11.4
+
+dependencies:
+  asn1lib: ^1.6.5
+  basic_utils: ^5.7.0
+  file_picker: ^11.0.2
+  flutter:
+    sdk: flutter
+  google_fonts: ^8.1.0
+  path: ^1.9.1
+  pointycastle: ^3.9.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
